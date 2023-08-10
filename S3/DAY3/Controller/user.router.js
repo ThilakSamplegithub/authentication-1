@@ -23,7 +23,7 @@ userRouter.post("/login",async(req,res)=>{
   const user=await UserModel.findOne({email})
   if(user){
     if(user.pass===pass){
-   const token= jwt.sign({course:"backend"},"masai")
+   const token= jwt.sign({course:"backend"},"masai",{ expiresIn: '1h' })
         res.status(200).send({message:"You are logged in",token})
     }else{
         res.status(200).send({message:"wrong password"})
